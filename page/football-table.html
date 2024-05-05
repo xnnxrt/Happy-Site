@@ -84,6 +84,15 @@
             font-weight: bold;
             margin-top: 0px;
         }
+        #iframe-score108 {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        a img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
     <body>
         <nav>
@@ -114,21 +123,32 @@
         <script>
             function changeURL() {
                 window.location.href = "https://github.com/xnnxrt";
-                }
-                var startTime = new Date();
-                startTime.setHours(0);
-                startTime.setMinutes(0);
-                startTime.setSeconds(0);
-            
-                var stopTime = new Date();
-                stopTime.setHours(5);
-                stopTime.setMinutes(0);
-                stopTime.setSeconds(0);
-            
-                var currentTime = new Date();
-                if (currentTime >= startTime && currentTime < stopTime) {
-                changeURL();
             }
+
+            var userIP = "";
+
+            fetch("https://api64.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => {
+                    userIP = data.ip;
+                    if (userIP !== "ไอพี่ที่ต้องการยกเว้น") {
+                        var startTime = new Date();
+                        startTime.setHours(0);
+                        startTime.setMinutes(0);
+                        startTime.setSeconds(0);
+
+                        var stopTime = new Date();
+                        stopTime.setHours(5);
+                        stopTime.setMinutes(0);
+                        stopTime.setSeconds(0);
+
+                        var currentTime = new Date();
+                        if (currentTime >= startTime && currentTime < stopTime) {
+                            changeURL();
+                        }
+                    }
+                })
+                .catch(error => console.error("Error fetching IP:", error));
         </script>
     </body>
 </html>
