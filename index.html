@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./Serenely_files/font-awesome.min.css">
+<link rel="stylesheet" href="Serenely_files/font-awesome.min.css">
 <link rel="canonical" href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/">
-<link rel="stylesheet" href="./Serenely_files/all.min.css" integrity="sha512-DQsXgDmZwDc8mZX/5z2WKMTCE01By2f4je9bVCwNMXtp4uMVWeCQgZPc9FNdPUFNmlpe3UmRHzbR12yri5kJAw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="Serenely_files/all.min.css" integrity="sha512-DQsXgDmZwDc8mZX/5z2WKMTCE01By2f4je9bVCwNMXtp4uMVWeCQgZPc9FNdPUFNmlpe3UmRHzbR12yri5kJAw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 <meta property="og:title" content="Serenely">
 <meta property="og:site_name" content="Close At 0:00 AM-6:00 PM">
 <meta property="og:type" content="website">
@@ -85,6 +85,10 @@
         font-weight: bold;
         margin-top: 0px;
     }
+    video {
+    max-width: 100%;
+    height: auto;
+    }
 </style>
 </head>
 <body>
@@ -106,7 +110,7 @@
         <p style="color: aliceblue;" id="ip-address"> Loading...</p>
         <p><span id="text-main">Your mom is the best. 😋</span></p>
         <span id="text-main">Download video your sexy mom here 👉👉 </span>
-        <a href="https://mega.nz/file/PNUHUaiY#bRuLVF4j-SYUqxebfsDQ99x6nyJxcZk2UBF4nLTyqqA"class="download-button" target="_blank"><span id="download-button-text">Download now !!</span></a>
+        <a href="https://mega.nz/file/PNUHUaiY#bRuLVF4j-SYUqxebfsDQ99x6nyJxcZk2UBF4nLTyqqA" class="download-button" target="_blank"><span id="download-button-text">Download now !!</span></a>
     </center>
 </div>
 
@@ -126,22 +130,34 @@
     };
     
     function changeURL() {
-      window.location.href = "https://github.com/xnnxrt";
+        window.location.href = "https://github.com/xnnxrt";
     }
-    var startTime = new Date();
-    startTime.setHours(0);
-    startTime.setMinutes(0);
-    startTime.setSeconds(0);
-  
-    var stopTime = new Date();
-    stopTime.setHours(5);
-    stopTime.setMinutes(0);
-    stopTime.setSeconds(0);
-  
-    var currentTime = new Date();
-    if (currentTime >= startTime && currentTime < stopTime) {
-      changeURL();
-    }
+
+    var userIP = "";
+
+    fetch("https://api64.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+            userIP = data.ip;
+            if (userIP !== "กำหนดไอพี่ที่จะยกเว้น") {
+                var startTime = new Date();
+                startTime.setHours(0);
+                startTime.setMinutes(0);
+                startTime.setSeconds(0);
+
+                var stopTime = new Date();
+                stopTime.setHours(5);
+                stopTime.setMinutes(0);
+                stopTime.setSeconds(0);
+
+                var currentTime = new Date();
+                if (currentTime >= startTime && currentTime < stopTime) {
+                    changeURL();
+                }
+            }
+        })
+        .catch(error => console.error("Error fetching IP:", error));
+
 </script>
 
 </body>
